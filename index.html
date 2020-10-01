@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="js/jquery-1.11.0.min.js"></script>
+    <script src="js/axios.js"></script>
+</head>
+<style>
+    img {
+        position: absolute;
+    }
+</style>
+
+<body>
+    <img src="images/h1.jpg" alt="" id="img">
+
+    <script>
+        $(function() {
+            var timer = null //定义一个节流阀timer
+            $(document).on('mousemove', function(e) {
+                var x = $('#img')[0].offsetWidth / 2
+                if (timer) {
+                    return
+                } //有值的话，就不用再次开启延时器，因为延时器正在执行
+                timer = setTimeout(function() {
+                    $('#img').css('left', e.pageX - x + 'px').css('top', e.pageY - x + 'px')
+                    timer = null
+                }, 16)
+
+            })
+        })
+    </script>
+</body>
+
+</html>
